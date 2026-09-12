@@ -1,0 +1,7 @@
+name: zmk-feature-battery-monitor
+
+build:
+  cmake: .
+  kconfig: Kconfig
+  settings:
+    dts_root: .

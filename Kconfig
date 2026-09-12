@@ -1,0 +1,9 @@
+# Copyright (c) 2026
+# SPDX-License-Identifier: MIT
+
+config ZMK_FEATURE_BATTERY_MONITOR
+    bool "ZMK battery monitor"
+    depends on DT_HAS_NIXIY_BATTERY_MONITOR_ENABLED
+    default y
+    select ADC
+    select ADC_NRFX_SAADC

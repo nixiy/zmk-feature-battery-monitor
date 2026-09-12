@@ -1,0 +1,49 @@
+# Copyright (c) 2026
+# SPDX-License-Identifier: MIT
+
+description: Configurable ADC battery voltage monitor for ZMK
+
+compatible: "nixiy,battery-monitor"
+
+include:
+  - sensor-device.yaml
+
+properties:
+  io-channels:
+    type: phandle-array
+    required: true
+    description: ADC input used to measure the voltage divider output.
+
+  output-ohms:
+    type: int
+    required: true
+    description: Resistance in ohms between the ADC input and ground.
+
+  full-ohms:
+    type: int
+    required: true
+    description: Total resistance in ohms across the battery voltage divider.
+
+  mv-to-pct-thresholds:
+    type: array
+    required: true
+    description: >
+      Ascending battery millivolt thresholds. Entries represent equally spaced
+      state-of-charge points from 0 to 100 percent.
+
+  smoothing-factor:
+    type: int
+    default: 8
+    description: EMA divisor. One disables smoothing; zero is treated as one.
+
+  battery-replacement-threshold-mv:
+    type: int
+    default: 0
+    description: >
+      Upward voltage jump in millivolts that resets the EMA. Zero disables
+      battery replacement detection.
+
+  power-gpios:
+    type: phandle-array
+    required: false
+    description: Optional GPIO used to power the voltage divider while sampling.
